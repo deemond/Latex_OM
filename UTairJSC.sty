@@ -6,9 +6,12 @@
 \usepackage{amsmath,amssymb}
 \usepackage{indentfirst}
 \usepackage[english,russian]{babel}
-\usepackage[T2A]{fontenc}
+%\usepackage[T2A]{fontenc}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\usepackage{marginnote}
 
-\usepackage[inner=2.3cm, outer=1.25cm,top=18mm,bottom=18mm]{geometry}%top=headheight+margin4mm+8
+\usepackage[inner=2.25cm, outer=1.25cm,top=20mm,bottom=20mm]{geometry}%top=headheight+margin4mm+8
 \usepackage{graphicx}%Вставка картинок правильная
 \usepackage{float}%"Плавающие" картинки
 \usepackage{color}
@@ -56,11 +59,12 @@
 
 %== для внесения изменений в текст. Оформляется синим, сбоку вертикальная линия
 %== вносятся данные в нижний колонтитул и он определяется только для страницы с изм параграфом
-\newcommand{\chgdPar}[3]{\marginpar{\rule[-8ex]{1pt}{7ex}}%
+\newcommand{\chgdPar}[3]{\marginnote{\rule{1pt}{7ex}}%
      \textcolor[rgb]{0,0,1}{#3}
      \fancypagestyle{fplain}{
      \fancyfoot[LO,RE]{Дата редакции:#1}
      \fancyfoot[C]{Изменение №:#2}}
      \thispagestyle{fplain} }
 
-     \setcounter{secnumdepth}{6}%глубина нумерования
+
+     \reversemarginpar
