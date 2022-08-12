@@ -2,6 +2,19 @@
 
 \renewcommand{\thesection}{8.\arabic{section}}
 
+
+\usepackage{titletoc}
+% % \dottedcontents{<section>}[<left>]{<above-code>}
+% % {<label width>}{<leader width>}
+\dottedcontents{section}[0em]{\bfseries}{3em}{1pc}
+\dottedcontents{subsection}[1em]{}{3em}{1pc}
+
+% center the toc heading
+\renewcommand{\contentsname}{\centering Contents}
+
+
+
+
 \begin{document}
     \UTdocHead{Часть А. Глава 8. Эксплуатационные требования и процедуры}
     \UTdocPageFooter{8}{01.01.2022}
@@ -15,6 +28,7 @@
 
     \include{A8-01.tex}
     \include{A8-02.tex}
+    \include{A8-03.tex}
 
     \input{../A8app01/A8app01.tex}
 
