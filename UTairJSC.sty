@@ -19,6 +19,7 @@
 \usepackage{multirow}
 \usepackage[colorlinks=true, linkcolor=blue]{hyperref} %==подключение и определение гиперссылок в доках
 \usepackage{setspace}
+\usepackage{chngcntr}
 
 %===параметры абзаца =================================
 \setlength{\parindent}{1cm} %размер отступа первой строки абзаца
@@ -31,8 +32,9 @@
 \setlist{noitemsep}
 \setlist[itemize]{leftmargin=10mm}
 \setlist[enumerate]{leftmargin=10mm}
+\setlist[description]{leftmargin=10mm}
 %\setlist{leftmargin=10mm}
-\setlist{labelindent=40mm} % < Usually a good idea
+%\setlist{labelindent=40mm} % < Usually a good idea
 %\setlist[itemize,1]{label=$\triangleleft$}
 %\setlist[enumerate,1]{label=\arabic*., ref=\arabic*}
 %==конец оформления списков=========
@@ -48,16 +50,31 @@
 
 \newcommand{\UTdocPageFooter}[2]{\fancyfoot[LO,RE]{Дата редакции:#2}
     \fancyfoot[C]{}
-    \fancyfoot[LE,RO]{#1.\arabic{page} из \pageref{LastPage}~}}%==страницы
+    \fancyfoot[LE,RO]{#1.\arabic{page} из \pageref{LastPage}~}%
+    \renewcommand{\thesection}{8.\arabic{section}}}%==страницы
+    
 %=============конец колонтитулов===============
 
 
 %== нумерует новый параграф, увеличивает счетик на единицу. 
-%== Subsect должен обнуляться принудительно обнулятьсяпосле объявления раздела
-\newcommand{\newPar}{\paragraph{\arabic{section}.\arabic{subsect} } \stepcounter{subsect}}
+%== Subsect должен обнуляться принудительно обнуляться после объявления раздела
+%\newcounter{subsect}[subsection]
+%\counterwithin{subsect}{subsection}
+%\newcommand{\newPar}{\paragraph{\arabic{section}.\arabic{subsection}.\arabic{subsect} } \stepcounter{subsect}}
+%\newcommand{\newPar}{\paragraph{(\arabic{subsect}) } \stepcounter{subsect}}
+\setcounter{secnumdepth}{5}
+\renewcommand{\theparagraph}{%
+  \ifnum\value{subsection}=0
+    \thesection
+  \else
+    \thesubsection
+  \fi
+  .\arabic{paragraph}}
 
 
-%== для внесения изменений в текст. Оформляется синим, сбоку вертикальная линия
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%== для внесения изменений в документ. Оформляется синим, сбоку вертикальная линия
 %== вносятся данные в нижний колонтитул и он определяется только для страницы с изм параграфом
 \newcommand{\chgdPar}[3]{\marginnote{\rule{1pt}{7ex}}%
      \textcolor[rgb]{0,0,1}{#3}
@@ -65,6 +82,19 @@
      \fancyfoot[LO,RE]{Дата редакции:#1}
      \fancyfoot[C]{Изменение №:#2}}
      \thispagestyle{fplain} }
-
-
      \reversemarginpar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\renewcommand{\thetable}{\thesection.T-\arabic{table}}%%% изменение нумерации таблиц%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%======оформление содержания, отступы и расстояния ==========
+\usepackage{titletoc}
+% % \dottedcontents{<section>}[<left>]{<above-code>}
+% % {<label width>}{<leader width>}
+\dottedcontents{section}[0em]{\bfseries}{3em}{1pc}
+\dottedcontents{subsection}[1em]{}{3em}{1pc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
