@@ -14,6 +14,7 @@
 \usepackage[inner=2.25cm, outer=1.25cm,top=20mm,bottom=20mm]{geometry}%top=headheight+margin4mm+8
 \usepackage{graphicx}%Вставка картинок правильная
 \usepackage{float}%"Плавающие" картинки
+\usepackage{wrapfig}%Обтекание фигур (таблиц, картинок и прочего)
 \usepackage{color}
 \usepackage{lastpage}
 \usepackage{multirow}
@@ -23,10 +24,10 @@
 
 %===параметры абзаца =================================
 \setlength{\parindent}{1cm} %размер отступа первой строки абзаца
-\setlength{\parskip}{6pt} %=отступы после абзацев
+\setlength{\parskip}{4pt} %=отступы после абзацев
 
 
-%=оформление списков:==============
+%%%%%%%%%%% оформление списков: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage{enumerate}
 \usepackage{enumitem}
 \setlist{noitemsep}
@@ -39,6 +40,9 @@
 %\setlist[enumerate,1]{label=\arabic*., ref=\arabic*}
 %==конец оформления списков=========
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %===========Колонтитулы====================
 \usepackage{fancybox,fancyhdr}
 \renewcommand{\headrulewidth}{1pt}
@@ -54,14 +58,11 @@
     \renewcommand{\thesection}{8.\arabic{section}}}%==страницы
     
 %=============конец колонтитулов===============
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%== нумерует новый параграф, увеличивает счетик на единицу. 
-%== Subsect должен обнуляться принудительно обнуляться после объявления раздела
-%\newcounter{subsect}[subsection]
-%\counterwithin{subsect}{subsection}
-%\newcommand{\newPar}{\paragraph{\arabic{section}.\arabic{subsection}.\arabic{subsect} } \stepcounter{subsect}}
-%\newcommand{\newPar}{\paragraph{(\arabic{subsect}) } \stepcounter{subsect}}
+
+%%%%%%%%%%%%%%% Включение номерации параграфов и определение длинного номера %%%%%%%%%%%%%
 \setcounter{secnumdepth}{5}
 \renewcommand{\theparagraph}{%
   \ifnum\value{subsection}=0
@@ -70,6 +71,9 @@
     \thesubsection
   \fi
   .\arabic{paragraph}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 
 
@@ -88,7 +92,7 @@
 
 
 \renewcommand{\thetable}{\thesection.T-\arabic{table}}%%% изменение нумерации таблиц%%%%%%%%%%%%%%
-
+\renewcommand{\thefigure}{\thesection.P-\arabic{figure}}%%% изменение нумерации рисунков%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %======оформление содержания, отступы и расстояния ==========
