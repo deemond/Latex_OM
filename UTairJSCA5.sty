@@ -30,6 +30,11 @@
 %%%%%%%%%%% оформление списков: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage{enumerate}
 \usepackage{enumitem}
+%\русские буквы для списков
+\makeatletter
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ}
+\makeatother
+%\==============================================
 \setlist{noitemsep}
 \setlist[itemize]{leftmargin=6mm}
 \setlist[enumerate]{leftmargin=6mm}
