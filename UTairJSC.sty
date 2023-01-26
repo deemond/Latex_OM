@@ -53,30 +53,37 @@
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{1pt}
 %==Команды для вставки в колонтитулы переменных данных
-\newcommand{\UTdocHead}[1]{\fancyhead[L]{\includegraphics[width=0.13\textwidth]{../utlogo.png}}
-    \fancyhead[C]{}
-    \fancyhead[R]{\textcolor{blue}{\small{ РПП АО ЮТэйр\\#1}}}}%==Название документа
+\newcommand{\UTdocColon}[4]{% 1- № Части, 2-№ Главы, 3- Название главы, 4- Дата редакции
+    \fancyhead[L]{\includegraphics[width=0.13\textwidth]{../utlogo.png}}             %=========
+    \fancyhead[C]{}                                                                  %Верхний колонтитул
+    \fancyhead[R]{\textcolor{blue}{\small{ РПП АО ЮТэйр\\Часть\ #1, Глава\ #2\ #3}}} %=========
+    \fancyfoot[LO,RE]{Дата редакции:#4}                       %===========
+    \fancyfoot[C]{}                                           %Нижний колонтитул
+    \fancyfoot[LE,RO]{#2.\arabic{page} из \pageref{LastPage}~}%===========
 
-\newcommand{\UTdocPageFooter}[2]{\fancyfoot[LO,RE]{Дата редакции:#2}
-    \fancyfoot[C]{}
-    \fancyfoot[LE,RO]{#1.\arabic{page} из \pageref{LastPage}~}%
-    \renewcommand{\thesection}{8.\arabic{section}}}%==страницы
-    
+    \renewcommand{\thesection}{#2.\arabic{section}}%==Определяется нумерация глав
+    }%==Колонтитулы сформированы    
 %=============конец колонтитулов===============
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
 %%%%%%%%%%%%%%% Включение номерации параграфов и определение длинного номера %%%%%%%%%%%%%
 \setcounter{secnumdepth}{5}
+% Если в главе нет подглав, то параграф нумеруется номером главы+арабский счетчик
+% Если есть - то номер подглавы+счетчик и так далее до Заголовка уровня 3
 \renewcommand{\theparagraph}{%
   \ifnum\value{subsection}=0
     \thesection
   \else
-    \thesubsection
+    \ifnum\value{subsubsection}=0
+      \thesubsection
+    \else
+      \thesubsubsection
+    \fi
   \fi
   .\arabic{paragraph}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 
@@ -104,6 +111,11 @@
 \usepackage{titletoc}
 % % \dottedcontents{<section>}[<left>]{<above-code>}
 % % {<label width>}{<leader width>}
-\dottedcontents{section}[3em]{\bfseries}{3em}{2pc}
-\dottedcontents{subsection}[4em]{}{3em}{2pc}
+\dottedcontents{section}[4em]{\bfseries}{4em}{2pc}
+\dottedcontents{subsection}[5em]{}{4em}{2pc}
+\dottedcontents{subsubsection}[5.5em]{}{3.5em}{2pc}
+\dottedcontents{table}[4em]{}{4em}{2pc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \renewcommand{\numberline}[1]{%
+%   \setlength{\@tempdima}{\widthof{#1~~}}
+%   \makebox[\@tempdima]{#1\hfill}}
