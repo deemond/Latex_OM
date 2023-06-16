@@ -1,9 +1,12 @@
-\input{../UTairJSC.sty}
+\message{ !name(A8.tex)}\input{../UTairJSC.sty}
 
 % center the toc heading
 \renewcommand{\contentsname}{\centering Contents}
 
 \begin{document}
+
+\message{ !name(A8.tex) !offset(-3) }
+
     \UTdocColon{A}{8}{Эксплуатационные требования и процедуры}{01.01.2022}
     \pagestyle{fancy}
     %\doublespacing
@@ -17,12 +20,13 @@
     \include{A8-03.tex}
     \include{A8-04.tex}
     
-    %\include{A8-05-07.tex}
-    %\include{A8-19.tex}
-    %\input{../A8app01/A8app01.tex}
+   \include{A8-05-07.tex}
+   \include{A8-19.tex}
+    \input{../A8app01/A8app01.tex}
 
     %\Этот комментарий для сравнения
     \section{Таблицы}
     \listoftables
 
 \end{document}
+\message{ !name(A8.tex) !offset(-32) }
